@@ -1,6 +1,7 @@
 """Select platform for Delta ERV integration."""
 
 import logging
+from datetime import timedelta
 
 from homeassistant.components.select import SelectEntity
 from homeassistant.config_entries import ConfigEntry
@@ -22,6 +23,9 @@ from .const import (
 )
 
 _LOGGER = logging.getLogger(__name__)
+
+# Polling interval
+SCAN_INTERVAL = timedelta(seconds=5)
 
 # Bypass mode mapping
 BYPASS_MODES = {

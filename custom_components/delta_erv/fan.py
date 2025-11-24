@@ -1,6 +1,7 @@
 """Fan platform for Delta ERV integration."""
 
 import logging
+from datetime import timedelta
 from typing import Any, Optional
 
 from homeassistant.components.fan import FanEntity, FanEntityFeature
@@ -25,6 +26,9 @@ from .const import (
 )
 
 _LOGGER = logging.getLogger(__name__)
+
+# Polling interval
+SCAN_INTERVAL = timedelta(seconds=5)
 
 # We use only Custom 1 (0x01) and dynamically set the percentage
 # This gives us full 0-100% granular control

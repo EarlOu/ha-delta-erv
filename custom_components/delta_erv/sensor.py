@@ -1,6 +1,7 @@
 """Sensor platform for Delta ERV integration."""
 
 import logging
+from datetime import timedelta
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -28,6 +29,9 @@ from .const import (
 )
 
 _LOGGER = logging.getLogger(__name__)
+
+# Polling interval
+SCAN_INTERVAL = timedelta(seconds=5)
 
 
 async def async_setup_entry(
