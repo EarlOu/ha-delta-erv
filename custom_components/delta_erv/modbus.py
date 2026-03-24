@@ -165,11 +165,11 @@ class DeltaERVModbusClient:
         """Read a register with proper connection handling and locking."""
         try:
             async with self.lock:
-                if not await self._ensure_connection():
-                    return None
-
                 # Throttle requests to avoid overwhelming the device
                 await self.hass.async_add_executor_job(self._throttle_request)
+
+                if not await self._ensure_connection():
+                    return None
 
                 result = await self.hass.async_add_executor_job(
                     lambda: self.client.read_holding_registers(
@@ -211,11 +211,11 @@ class DeltaERVModbusClient:
         """Write a register with proper connection handling and locking."""
         try:
             async with self.lock:
-                if not await self._ensure_connection():
-                    return False
-
                 # Throttle requests to avoid overwhelming the device
                 await self.hass.async_add_executor_job(self._throttle_request)
+
+                if not await self._ensure_connection():
+                    return False
 
                 result = await self.hass.async_add_executor_job(
                     lambda: self.client.write_register(
@@ -259,11 +259,11 @@ class DeltaERVModbusClient:
         """Write multiple registers with proper connection handling and locking."""
         try:
             async with self.lock:
-                if not await self._ensure_connection():
-                    return False
-
                 # Throttle requests to avoid overwhelming the device
                 await self.hass.async_add_executor_job(self._throttle_request)
+
+                if not await self._ensure_connection():
+                    return False
 
                 result = await self.hass.async_add_executor_job(
                     lambda: self.client.write_registers(
